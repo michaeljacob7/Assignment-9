@@ -19,10 +19,10 @@ empRatePerHr=100;
 randomCheck=$((RANDOM%3));
 if [ $isFullTime -eq $randomCheck ];
 then
-        empHrs=8;
+        empHrs=16;
 elif [ $isPartTime -eq $randomCheck ];
 then
-        empHrs=4;
+        empHrs=8;
 else
         empHrs=0;
 fi
