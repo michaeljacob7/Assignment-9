@@ -16,7 +16,7 @@ fi
 isPartTime=1;
 isFullTime=2;
 empRatePerHr=100;
-randomCheck=$((RANDOM%3));
+#randomCheck=$((RANDOM%3));
 #if [ $isFullTime -eq $randomCheck ];
 #then
 #       empHrs=16;
@@ -28,18 +28,31 @@ randomCheck=$((RANDOM%3));
 #fi
 
 #TO USE SWITCH CASE
-function getWorkingHours() {
-        case $1 in
-                $isFullTime)
-                        empHrs=8
-                        ;;
-                $isPartTime)
-                        empHrs=4
-                        ;;
-                *)
-                        empHrs=0
-                        ;;
-        esac
-}
-getWorkingHours $((RANDOM%3))
-salary=$(($empHrs*$empRatePerHr));
+
+
+#ADDING TOTAL WORKING DAYS
+numWorkingDays=20;
+totalWorkHours=0;
+totalWorkingDays=0;
+totalSalary=0;
+maxEmpHours=100;
+
+while [[ $totalEmpHrs -lt $maxEmpHours && $totalWorkingDays -lt $numWorkingDays ]]
+do
+	((totalWorkingDays++))
+	empCheck=$(($RANDOM%3));
+case $empCheck in
+  $isFullTime)
+       empHrs=8
+         ;;
+  $isPartTime)
+       empHrs=4
+        ;;
+  *)
+    empHrs=0
+        ;;
+esac
+totalEmpHrs=$(( $totalEmpHrs + $empHrs ));
+done
+
+totalSalary=$(($totalEmpHrs*$empRatePerHr))
