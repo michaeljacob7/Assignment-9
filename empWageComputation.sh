@@ -34,11 +34,19 @@ case $1 in
         ;;
 esac
 }
+
+function getEmpWage(){
+	echo $(($1*$empRatePerHr))
+}
 while [[ $totalEmpHrs -lt $maxEmpHours && $totalWorkingDays -lt $numWorkingDays ]]
 do
-        ((totalWorkingDays++))
+         echo "Day number: "$totalWorkingDays
+	((totalWorkingDays++))
         getWorkingHours $((RANDOM%3))
 	totalEmpHrs=$(( $totalEmpHrs + $empHrs ))
+	dailyWages[$totalWorkingDays]=$(($empHrs*$empRatePerHr))
+	echo "Daily Wage: "${dailyWages[$totalWorkingDays]}
 done
 
-totalSalary=$(($totalEmpHrs*$empRatePerHr))
+totalSalary="$( getEmpWage $totalEmpHrs )"
+echo "Total Wage: "$totalSalary
