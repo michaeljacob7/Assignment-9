@@ -40,8 +40,7 @@ function getEmpWage(){
 }
 while [[ $totalEmpHrs -lt $maxEmpHours && $totalWorkingDays -lt $numWorkingDays ]]
 do
-         echo "Day number: "$totalWorkingDays
-	((totalWorkingDays++))
+        ((totalWorkingDays++))
         getWorkingHours $((RANDOM%3))
 	totalEmpHrs=$(( $totalEmpHrs + $empHrs ))
 	dailyWages[$totalWorkingDays]=$(($empHrs*$empRatePerHr))
